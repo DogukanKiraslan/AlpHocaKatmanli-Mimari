@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ecommaranceWithLayeredArchDomain.Entities.Product>
+@using ecommaranceWithLayeredArchDomain.Entities
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layouts/Layout1.cshtml";
+}
+
+<div class="table table-responsive-sm">
+    <br />
+    <table class="table table-sm table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>Aktif</th>
+            <th>Seçenekler</th>
+            <th>Detay</th>
+        </tr>
+
+        @foreach (Product item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                @if (item.IsActive)
+                {
+                    <td>
+                        <span class="badge rounded-pill text-light bg-success">Aktif</span>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <span class="badge rounded-pill text-light bg-danger">Pasif</span>
+                    </td>
+                }
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="@Url.Action("ChangeStatus","Product", new {id = item.ID})" class="btn btn-outline-primary"> <i class="fa fa-recycle"> </i></a>
+                        <a href="@Url.Action("Edit","Product", new {id = item.ID})" class="btn btn-outline-success"> <i class="fa fa-pencil-square-o"> </i></a>
+                        <a href="@Url.Action("Delete","Product", new {id = item.ID})" class="btn btn-outline-danger"> <i class="fa fa-trash"> </i></a>
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm"><a href="@Url.Action("Detail","Product", new {id = item.ID})" class="btn btn-outline-secondary"><i class="fa fa-archive"></i></a></div>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="@Url.Action("Create","Product")" class="btn btn-sm btn-outline-success">Ekle</a>
+</div>

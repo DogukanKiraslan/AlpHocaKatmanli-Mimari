@@ -1,0 +1,76 @@
+﻿@model ecommaranceWithLayeredArchManagerUI.Models.ManagerLoginModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Signin Template · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/signin.css" rel="stylesheet" />
+</head>
+<body class="text-center">
+    <main class="form-signin">
+        @using (Html.BeginForm("ManagerLogin", "Login", FormMethod.Post))
+        {
+
+            if (ViewBag.result == null)
+            {
+                <h1 class="h3 mb-3 fw-normal" id="face">(•_•)</h1>
+            }
+            else
+            {
+                <h1 class="h3 mb-3 fw-normal" id="face">(x_x)</h1>
+                <p style="color:darkred; font-size:18px;">Üldü</p>
+            }
+
+            <div class="form-floating">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput" } })
+                <label for="floatingInput">E-mail</label>
+            </div>
+            <div class="form-floating">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @id = "floatingPassword", @type = "password" } })
+                <label for="floatingPassword">Şifre</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" id="btnSleep">Log in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        }
+
+    </main>
+
+    <script>
+        const heading = document.getElementById("face")
+        const wakeUp1 = document.getElementById("floatingInput");
+        const wakeUp2 = document.getElementById("floatingPassword");
+
+        wakeUp1.addEventListener("focusin", function () {
+            heading.textContent = "(-_-)";
+        })
+        wakeUp1.addEventListener("focusout", function () {
+            heading.textContent = "(•_•)";
+        })
+        wakeUp2.addEventListener("focusin", function () {
+            heading.textContent = "(-_-)";
+        })
+        wakeUp2.addEventListener("focusout", function () {
+            heading.textContent = "(•_•)";
+        })
+    </script>
+</body>
+</html>

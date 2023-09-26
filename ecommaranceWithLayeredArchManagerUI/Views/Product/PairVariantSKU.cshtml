@@ -1,0 +1,37 @@
+﻿@model ecommaranceWithLayeredArchDomain.Entities.VariantSKU
+@{
+    ViewBag.Title = "PairVariantSKU";
+    Layout = "~/Views/Layouts/Layout1.cshtml";
+}
+
+
+
+<br />
+<div class="card">
+    @using (Html.BeginForm("PairVariantSKU", "Product", FormMethod.Post))
+    {
+        <div class="card-body">
+            <div>
+                @if (ViewBag.result != null)
+                {
+                    if (ViewBag.result == "success")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Başarılı</strong>
+                            Eşleştirme  Başarılı
+                        </div>
+                    }
+                }
+            </div>
+            <div class="mb-3">
+                @Html.DropDownList("Variant_ID", null, "Varyant Seçiniz", htmlAttributes: new { @class = "form-select" })
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Eşleştir</button>
+            &nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Detail","Product", new {id = ViewBag.product_ID})" class="link-dark">Ürün Detayına Dön</a>
+        </div>
+    }
+
+</div>
